@@ -8,7 +8,7 @@ try {
     pool.query('SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs INNER JOIN Users ON Users.user_id = Dogs.owner_id', (err, results) => {
         if (err) {
             console.log('Error Fetching Dogs:', err);
-            return res.status(500).send('Could not load walkers');
+            return res.status(500).send('Could not load dogs');
         }
         res.send(results);
     });

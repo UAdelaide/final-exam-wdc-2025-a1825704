@@ -31,7 +31,9 @@ router.get('/api/walkers/summary', function(req, res, next) {
 const pool = req.pool;
 
 try {
-    pool.query(``, (err, results));
+    pool.query(``, (err, results) => {
+        
+    });
 } catch (err) {
     res.status(500).send('Error retrieving data: ' + err);
 }

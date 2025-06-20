@@ -59,10 +59,10 @@ let db;
     // Insert walk request into WalkRequests
     const [requestRows] = await db.execute(`
         INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
-VALUES
-((SELECT dog_id FROM Dogs WHERE name='Max'), '2025-06-10 08:00:00', 30, 'Parklands', 1),
-((SELECT dog_id FROM Dogs WHERE name='Bella'), '2025-06-10 09:30:00', 45, 'Beachside Ave', 2),
-((SELECT dog_id FROM Dogs WHERE name='Penut'), '2025-06-9 09:30:00', 60, 'Brighton Beach', 3),`);
+        VALUES
+        ((SELECT dog_id FROM Dogs WHERE name='Max'), '2025-06-10 08:00:00', 30, 'Parklands', 1),
+        ((SELECT dog_id FROM Dogs WHERE name='Bella'), '2025-06-10 09:30:00', 45, 'Beachside Ave', 2),
+        ((SELECT dog_id FROM Dogs WHERE name='Penut'), '2025-06-9 09:30:00', 60, 'Brighton Beach', 3),`);
     } catch (err) {
          console.error('Error populating database.', err);
     }

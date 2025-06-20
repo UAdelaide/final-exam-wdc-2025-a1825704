@@ -41,7 +41,7 @@
 
     <p style="font-size: 2em; color: lime; background: purple;">Push all buttons in order to see the surprise!</p>
 
-    <button class="button" @click="firstClick = true">Step 1</button>
+    <button type="button" class="button" @click="firstClick = true">Step 1</button>
     <button class="button" v-if="firstClick" @click="secondClick = true">Step 2</button>
     <button class="button" v-if="secondClick" @click="getDog">Reveal Dog of the Day 🐶</button>
 

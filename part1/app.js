@@ -10,6 +10,7 @@ var apiRouter = require('./routes/api');
 
 var app = express();
 
+
 const connection = mysql.createConnection({
   host: 'localhost',
   database: 'DogWalkService'

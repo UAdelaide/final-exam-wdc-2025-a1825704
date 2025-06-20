@@ -10,6 +10,10 @@ var apiRouter = require('./routes/api');
 
 var app = express();
 
+var dbConnectionPool = mysql.createPool({
+  host: 'localhost',
+  database: 'DogWalkService'
+});
 
 const connection = mysql.createConnection({
   host: 'localhost',

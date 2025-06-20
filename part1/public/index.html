@@ -42,12 +42,12 @@
     <p style="font-size: 2em; color: lime; background: purple;">Push all buttons in order to see the surprise!</p>
 
     <button type="button" class="button" @click="firstClick = true">Step 1</button>
-    <button class="button" v-if="firstClick" @click="secondClick = true">Step 2</button>
-    <button class="button" v-if="secondClick" @click="getDog">Reveal Dog of the Day 🐶</button>
+    <button type="button" class="button" v-if="firstClick" @click="secondClick = true">Step 2</button>
+    <button type="button" class="button" v-if="secondClick" @click="getDog">Reveal Dog of the Day 🐶</button>
 
     <div v-if="dogUrl">
       <h2 style="font-size: 3em;">Today's Dog</h2>
-      <img :src="dogUrl">
+      <img alt="" src:src="dogUrl">
       <p>This is Sir Barkington III, our loyal and fluffy companion!</p>
     </div>
 

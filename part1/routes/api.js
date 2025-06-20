@@ -12,7 +12,7 @@ try {
             size: results[0].size,
             owner_username: results[0].owner_id
         };
-        res.
+        res.json(dog);
     });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);

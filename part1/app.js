@@ -33,7 +33,8 @@ let db;
     });
 
     // Insert users into Users
-    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM users');
+    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
+    if(rows[0].count)
     } catch (err) {
          console.error('Error populating database.', err);
     }

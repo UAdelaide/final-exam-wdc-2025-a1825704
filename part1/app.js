@@ -10,11 +10,6 @@ var apiRouter = require('./routes/api');
 
 var app = express();
 
-var dbConnectionPool = mysql.createPool({
-  host: 'localhost',
-  database: 'DogWalkService'
-});
-
 const connection = mysql.createConnection({
   host: 'localhost',
   database: 'DogWalkService'
@@ -26,6 +21,8 @@ connection.connect((err) => {
   }
   console.log('Connected to mysql database');
 });
+
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

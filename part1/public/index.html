@@ -1,13 +1,78 @@
 <!DOCTYPE html>
-<script src="/javascript/vue.js"></script>
 <html lang="en">
 <head>
-    <title>Dog Walking Service</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+  <meta charset="UTF-8">
+  <title>WoofWalkers!</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <style>
+    body {
+      background: linear-gradient(45deg, yellow, hotpink, cyan, lime);
+      font-family: 'Comic Sans MS', cursive;
+      color: #f0f;
+      animation: spin 10s linear infinite;
+      text-align: center;
+    }
 
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .button {
+      background: red;
+      padding: 20px;
+      margin: 10px;
+      font-size: 2em;
+      border: dashed 3px black;
+      cursor: none;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+  </style>
+</head>
 <body>
-    <h1>Who Out Here Walking They Dog?</h1>
-    <p></p>
+  <div id="app">
+    <h1>Welcome to the Bestest Dog Walkers Service!!!</h1>
+
+    <p style="font-size: 2em; color: lime; background: purple;">Push all buttons in order to see the surprise!</p>
+
+    <button class="button" @click="firstClick = true">Step 1</button>
+    <button class="button" v-if="firstClick" @click="secondClick = true">Step 2</button>
+    <button class="button" v-if="secondClick" @click="getDog">Reveal Dog of the Day 🐶</button>
+
+    <div v-if="dogUrl">
+      <h2 style="font-size: 3em;">Today's Dog</h2>
+      <img :src="dogUrl">
+      <p>This is Sir Barkington III, our loyal and fluffy companion!</p>
+    </div>
+
+    <a href="https://example.com" style="color: yellow;">Click here to book (maybe)</a>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          dogUrl: '',
+          firstClick: false,
+          secondClick: false
+        };
+      },
+      methods: {
+        async getDog() {
+          const res = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await res.json();
+          this.dogUrl = data.message;
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>

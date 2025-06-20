@@ -9,6 +9,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var dbConnectionPool = mysql.createPool({
+  host: 'localhost',
+  database: 'DogWalkService'
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

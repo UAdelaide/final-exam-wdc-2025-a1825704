@@ -25,10 +25,12 @@ connection.connect((err) => {
 let db;
 
 (async () => {
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        database: 'DogWalkService'
-    });
+    db = await mysql.createConnection({
+          host: 'localhost',
+          user: 'root',
+          password: '',
+          database: 'testdb'
+        });
 
 
 })();

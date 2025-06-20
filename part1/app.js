@@ -68,7 +68,8 @@ let db;
     }
 
     // Insert rating into WalkRatings
-    const [ratingRpws] = await db.execute()
+    const [ratingRpws] = await db.execute('SELECT COUNT(*) AS count FROM WalkRatings');\
+    if(ratingRpws)
     } catch (err) {
          console.error('Error populating database.', err);
     }

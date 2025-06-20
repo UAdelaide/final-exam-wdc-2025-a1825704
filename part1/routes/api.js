@@ -10,7 +10,7 @@ try {
         const dog = {
             dog_name: results[0].name,
             size: results[0].size,
-            owner_username: pool.query()
+            owner_username: results[0].
         };
         res.render('api/dogs', { dogs: dog });
     });

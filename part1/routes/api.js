@@ -11,7 +11,7 @@ try {
             dog_name: results[0].name,
             size: results[0].size,
             owner_username: pool.query()
-        }
+        };
     });
     res.render('api/dogs', { dogs: dog });
 } catch(err) {

@@ -40,15 +40,15 @@ const pool = req.pool;
 
 try {
     pool.query(`
-    SELECT u.username AS walker_username, COUNT(r.rating_id) AS total_ratings, COALESCE(ROUND(AVG(r.rating), 2), 0) AS average_ratings,
-    COUNT(DISTINCT CASE WHEN wr.status = 'completed' THEN wr.request_id END) AS completed_walks
-    FROM Users u
-    LEFT JOIN WalkRatings r ON r.walker_id  = u.user_id
-    LEFT JOIN WalkApplications wa ON wa.walker_id = u.user_id AND wa.status = 'accepted'
-    LEFT JOIN WalkRequests wr ON wr.request_id = wa.request_id
-    WHERE  u.role = 'walker'
-    GROUP BY u.user_id, u.username
-    ORDER BY u.username`, (err, results) => {
+    SELECT Users.username AS walker_username, COUNT(WalkRatings.rating_id) AS total_ratings, COALESCE(ROUND(AVG(WalkRatings.rating), 2), 0) AS average_ratings,
+    COUNT(DISTINCT CASE WHEN WalkRequests.status = 'completed' THEN WalkRequests.request_id END) AS completed_walks
+    FROM Users
+    LEFT JOIN WalkRatings ON WalkRatings.walker_id  = Users.user_id
+    LEFT JOIN WalkApplications ON WalkApplications.walker_id = Users.user_id AND WalkApplications.status = 'accepted'
+    LEFT JOIN WalkRequests ON WalkRequests.request_id = WalkApplications.request_id
+    WHERE  Users.role = 'walker'
+    GROUP BY Users.user_id, Users.username
+    ORDER BY Users.username`, (err, results) => {
         if (err) {
             console.log('Error Fetching Walkers:', err);
             return res.status(500).send('Could not load walkers');

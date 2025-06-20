@@ -25,7 +25,12 @@ connection.connect((err) => {
 let db;
 
 (async () => {
-    const connection = mysql.crea
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        database: 'DogWalkService'
+    });
+
+
 })();
 
 app.set('views', path.join(__dirname, 'views'));

@@ -33,8 +33,8 @@ let db;
     });
 
     // Insert users into Users
-    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
-    if(rows[0].count === 0) {
+    const [userRows] = await db.execute('SELECT COUNT(*) AS count FROM Users');
+    if(userRows[0].count === 0) {
         await db.execute(`
             INSERT INTO Users (username, email, password_hash, role)
             VALUES
@@ -44,8 +44,8 @@ let db;
             ('dandadan', 'dan@example.com', 'hashed091', 1),
             ('ianwalks', 'ian@example.com', 'hashed403', 2);`);
     }
-    
 
+    const [dogRows] = await db
     } catch (err) {
          console.error('Error populating database.', err);
     }

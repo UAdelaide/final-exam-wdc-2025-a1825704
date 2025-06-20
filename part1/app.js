@@ -26,13 +26,9 @@ let db;
 
 (async () => {
     db = await mysql.createConnection({
-          host: 'localhost',
-          user: 'root',
-          password: '',
-          database: 'testdb'
-        });
-
-
+        host: 'localhost',
+        database: 'DogWalkService'
+    });
 })();
 
 app.set('views', path.join(__dirname, 'views'));

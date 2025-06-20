@@ -48,8 +48,7 @@ try {
     LEFT JOIN WalkRequests wr ON wr.request_id = wa.request_id
     WHERE  u.role = 'walker'
     GROUP BY u.user_id, u.username
-    ORDER BY u.username;
-`, (err, results) => {
+    ORDER BY u.username`, (err, results) => {
         if (err) {
             console.log('Error Fetching Walkers:', err);
             return res.status(500).send('Could not load walkers');

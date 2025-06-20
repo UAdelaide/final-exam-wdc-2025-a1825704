@@ -57,7 +57,7 @@ let db;
     }
 
     // Insert walk request into WalkRequests
-    const [requestRows] = await
+    const [requestRows] = await db.execute('SELECT COUNT(*) AS count FROM WalkRequests')
         {await db.execute(`
             INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
             VALUES

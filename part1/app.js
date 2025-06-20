@@ -67,7 +67,8 @@ let db;
             ((SELECT dog_id FROM Dogs WHERE name='Penut'), '2025-06-9 09:30:00', 60, 'Brighton Beach', 3),`);
     }
 
-    // Insert rating 
+    // Insert rating into WalkRatings
+    const [ratingRpws] = await db.execute()
     } catch (err) {
          console.error('Error populating database.', err);
     }

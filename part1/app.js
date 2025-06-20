@@ -31,7 +31,8 @@ let db;
         database: 'DogWalkService'
     });
 
-    // Insert
+    // Insert users into Users
+    const [rows] 
 })();
 
 app.set('views', path.join(__dirname, 'views'));

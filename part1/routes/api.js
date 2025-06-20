@@ -18,7 +18,9 @@ const pool = req.pool;
 
 try {
     pool.query('SELECT WalkRequests.request_id, Dogs.name AS dog_name, WalkRequests.requested_time, WalkRequests.duration_minutes, WalkRequests.location, Users.username AS owner_name FROM WalkRequests INNER JOIN Dogs ON Dogs.dog_id = WalkRequests.dog_id INNER JOIN Users ON Dogs.owner_id = Users.user_id',
-        (err)
+        (err, results) => {
+            res.send(results);
+        }
     )
 }
 });

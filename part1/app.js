@@ -15,6 +15,18 @@ var dbConnectionPool = mysql.createPool({
   database: 'DogWalkService'
 });
 
+const connection = mysql.createConnection({
+  host: 'localhost',
+  database: 'DogWalkService'
+});
+connection.connect((err) => {
+  if(err) {
+    console.log('Error connecting to database: ', err);
+    return;
+  }
+  console.log('Connected to mysql database');
+});
+
 app.use(function(req, res, next){
   req.pool = dbConnectionPool;
   next();

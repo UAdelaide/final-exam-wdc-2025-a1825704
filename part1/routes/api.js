@@ -5,7 +5,7 @@ router.get('/api/dogs', function(req, res, next) {
 const pool = req.pool;
 
 try {
-    pool.query('SELECT Dogs.name, Dogs.size, Users.username FROM Dogs INNER JOIN ON Users.user', (err, results) => {
+    pool.query('SELECT Dogs.name, Dogs.size, Users.username FROM Dogs INNER JOIN ON Users.user_id = Dogs.owner_id', (err, results) => {
     });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);

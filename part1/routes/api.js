@@ -22,6 +22,8 @@ try {
             res.send(results);
         }
     )
+} catch (err) {
+    res.status(500).send('Error retrieving data')
 }
 });
 

@@ -22,7 +22,11 @@ connection.connect((err) => {
   console.log('Connected to mysql database');
 });
 
+let db;
 
+(async () => {
+
+})();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

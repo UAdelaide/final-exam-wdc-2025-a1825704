@@ -6,13 +6,7 @@ const pool = req.pool;
 
 try {
     pool.query('SELECT * FROM Dogs', (err, results) => {
-
-        const dog = {
-            dog_name: results.name,
-            size: results.size,
-            owner_username: results.owner_id
-        };
-        res.json(dog);
+        res.json(results);
     });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);

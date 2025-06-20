@@ -6,10 +6,10 @@ const pool = req.pool;
 
 try {
     pool.query('SELECT * FROM Dogs', (err, results) => {
-        
+
     });
 } catch(err) {
-
+    
 }
 });
 

@@ -33,7 +33,9 @@ let db;
     });
 
     // Insert users into Users
-    const [rows]
+    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
+    } catch (err) {
+
     }
 })();
 

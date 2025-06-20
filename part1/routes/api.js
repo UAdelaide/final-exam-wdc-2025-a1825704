@@ -40,6 +40,10 @@ const pool = req.pool;
 
 try {
     pool.query(``, (err, results) => {
+        if (err) {
+            console.log('Error Fetching Walkers:', err);
+            return res.status(500).send('Could not load walkers');
+        }
         res.send(results);
     });
 } catch (err) {

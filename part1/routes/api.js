@@ -5,7 +5,7 @@ router.get('/api/dogs', function(req, res, next) {
 const pool = req.pool;
 
 try {
-    pool.query('SELECT * FROM Dogs', (err, results) => {
+    pool.query('SELECT Dogs.name, Dogs.zise', (err, results) => {
     });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);

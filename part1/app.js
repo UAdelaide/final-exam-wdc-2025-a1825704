@@ -81,7 +81,8 @@ let db;
     }
 
     // Insert walk application into WalkApplications
-    const [appRows] = await db.execute('SELECT COUNT')
+    const [appRows] = await db.execute('SELECT COUNT(*) AS count FROM WalkApplications');
+    if(appRows[[0]])
     } catch (err) {
          console.error('Error populating database.', err);
     }

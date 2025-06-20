@@ -12,6 +12,7 @@ try {
             size: results.size,
             owner_username: results.owner_id
         };
+
         res.json(dog);
     });
 } catch(err) {

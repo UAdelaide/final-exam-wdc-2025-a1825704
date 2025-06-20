@@ -79,6 +79,9 @@ let db;
             INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments)
             VALUES (7, 2, 4, 3, 'Very good')`);
     }
+
+    // Insert walk application into WalkApplications
+    const []
     } catch (err) {
          console.error('Error populating database.', err);
     }

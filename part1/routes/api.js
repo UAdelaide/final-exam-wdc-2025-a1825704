@@ -33,7 +33,7 @@ const pool = req.pool;
 try {
     pool.query(``);
 } catch (err) {
-
+    res.status(500).send('Error retrieving data: ' + err);
 }
 });
 

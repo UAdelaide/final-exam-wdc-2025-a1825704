@@ -46,7 +46,11 @@ let db;
     }
 
     const [dogRows] = await db.execute('SELECT COUNT(*) AS count FROM Dogs');
-    if()
+    if(dogRows[0].count === 0) {
+        await db.execute(`
+            
+            `);
+    }
     } catch (err) {
          console.error('Error populating database.', err);
     }

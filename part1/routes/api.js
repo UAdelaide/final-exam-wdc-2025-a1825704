@@ -12,7 +12,7 @@ try {
             size: results.size,
             owner_username: results.owner_id
         };
-
+        for(let i = 0; i < results.length)
         res.json(dog);
     });
 } catch(err) {

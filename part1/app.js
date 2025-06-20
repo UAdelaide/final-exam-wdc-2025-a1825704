@@ -45,7 +45,8 @@ let db;
             ('ianwalks', 'ian@example.com', 'hashed403', 2);`);
     }
 
-    const [dogRows] = await db
+    const [dogRows] = await db.execute('SELECT COUNT(*) AS count FROM Dogs');
+    if()
     } catch (err) {
          console.error('Error populating database.', err);
     }

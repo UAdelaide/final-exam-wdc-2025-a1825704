@@ -7,7 +7,7 @@ const pool = req.pool;
 try {
     pool.query('SELECT * FROM Dogs', (err, results) => {
         if (err) {
-            console.log('Error Fetching Dogs: ')
+            console.log('Error Fetching Dogs: ' + err);
         }
     });
 } catch(err) {

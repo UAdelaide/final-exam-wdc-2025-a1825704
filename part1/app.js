@@ -56,7 +56,7 @@ let db;
             ((SELECT user_id FROM Users WHERE username='dandadan'), 'Penut', 3),`);
     }
 
-    
+    // Insert walk request into WalkRequests
     } catch (err) {
          console.error('Error populating database.', err);
     }

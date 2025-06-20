@@ -25,7 +25,7 @@ connection.connect((err) => {
 let db;
 
 (async () => {
-
+    const connection = mysql.crea
 })();
 
 app.set('views', path.join(__dirname, 'views'));

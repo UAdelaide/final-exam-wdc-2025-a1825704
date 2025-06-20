@@ -8,7 +8,9 @@ try {
     pool.query('SELECT * FROM Dogs', (err, results) => {
 
         const dog = {
-            
+            dog_name:
+            size:
+            owner_username:
         }
     });
 } catch(err) {

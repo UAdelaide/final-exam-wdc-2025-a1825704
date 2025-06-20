@@ -43,7 +43,9 @@ let db;
             ('carol123', 'carol@example.com', 'hashed789', 1),
             ('dandadan', 'dan@example.com', 'hashed091', 1),
             ('ianwalks', 'ian@example.com', 'hashed403', 2);`);
-        }
+    }
+    
+
     } catch (err) {
          console.error('Error populating database.', err);
     }

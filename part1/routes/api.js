@@ -13,6 +13,7 @@ try {
             owner_username:
         }
     });
+    res.render('api/dogs', {dogs: dogs })
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);
 }

@@ -27,7 +27,13 @@ try {
 });
 
 router.get('/api/walkers/summary', function(req, res, next) {
+const pool = req.pool;
 
+try {
+    pool.query
+} catch (err) {
+
+}
 });
 
 module.exports = router;

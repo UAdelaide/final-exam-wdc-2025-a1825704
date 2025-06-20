@@ -25,14 +25,16 @@ connection.connect((err) => {
 let db;
 
 (async () => {
-    // Database connection
+    try {
+        // Database connection
     db = await mysql.createConnection({
         host: 'localhost',
         database: 'DogWalkService'
     });
 
     // Insert users into Users
-    const [rows] await db.execute('');
+    const [rows]
+    }
 })();
 
 app.set('views', path.join(__dirname, 'views'));

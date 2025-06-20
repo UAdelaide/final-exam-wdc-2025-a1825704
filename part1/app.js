@@ -57,6 +57,8 @@ let db;
     }
 
     // Insert walk request into WalkRequests
+    const [requestRows] = await db.execute('
+        ');
     } catch (err) {
          console.error('Error populating database.', err);
     }

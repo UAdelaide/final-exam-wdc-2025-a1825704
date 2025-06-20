@@ -12,10 +12,9 @@ try {
             size: results.size,
             owner_username: results.owner_id
         };
-        for(let i = 0; i < results.length) {
-            
+        for(let i = 0; i < results.length; i++) {
+            res.json(dog[i]);
         }
-        res.json(dog);
     });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);

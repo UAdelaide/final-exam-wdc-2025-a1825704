@@ -32,7 +32,7 @@ let db;
     });
 
     // Insert users into Users
-    const [rows] await db.execute();
+    const [rows] await db.execute('');
 })();
 
 app.set('views', path.join(__dirname, 'views'));

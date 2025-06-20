@@ -48,8 +48,11 @@ let db;
     const [dogRows] = await db.execute('SELECT COUNT(*) AS count FROM Dogs');
     if(dogRows[0].count === 0) {
         await db.execute(`
-            
-            `);
+            INSERT INTO Dogs (owner_id, name, size)
+VALUES
+((SELECT user_id FROM Users WHERE username='alice123'), 'Max', 2),
+((SELECT user_id FROM Users WHERE username='carol123'), 'Bella', 1),
+((SELECT user_id FROM Users WHERE username='dandadan'), 'Penut', 3),`);
     }
     } catch (err) {
          console.error('Error populating database.', err);

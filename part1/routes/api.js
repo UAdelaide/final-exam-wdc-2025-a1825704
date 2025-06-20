@@ -9,7 +9,7 @@ try {
 
         const dog = {
             dog_name: results[0].name,
-            size:
+            size: results[0].size,
             owner_username:
         }
     });

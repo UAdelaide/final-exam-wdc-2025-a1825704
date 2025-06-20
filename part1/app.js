@@ -35,7 +35,7 @@ let db;
     // Insert users into Users
     const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
     } catch (err) {
-
+         console.error('Error populating database. Ensure Mysql is running: service mysql start', err);
     }
 })();
 

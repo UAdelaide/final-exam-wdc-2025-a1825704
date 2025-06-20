@@ -12,8 +12,8 @@ try {
             size: results[0].size,
             owner_username: pool.query()
         };
+        res.render('api/dogs', { dogs: dog });
     });
-    res.render('api/dogs', { dogs: dog });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);
 }

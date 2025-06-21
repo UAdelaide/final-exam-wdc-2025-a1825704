@@ -62,7 +62,7 @@ router.post('/login', (req, res) => {
 
                     // If the passwords don't match send an error
                     if (password !== user.password) {
-                        return res.status(401).render('login', { error: "Invalid username or password" });
+                        return res.status(401).render('/users/login', { error: "Invalid username or password" });
                     }
                     req.session.user = {
                         id: user.uers_id,
@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
                       res.redirect('/walk');
                     }
             });
-        });
+        };
     }
     else {
         return res.status(400).send("Please provide login credentials");

@@ -5,7 +5,7 @@ const db = require('../models/db');
 // GET all walk requests (for walkers to view)
 router.get('/', async (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/api/user/login');
+        return res.redirect('/user/login');
     }
   try {
     const [rows] = await db.query(`

@@ -88,7 +88,7 @@ router.get('/walk', requireRole('walker'), (req, res) => {
 
 // GET /users/owner  –  owner dashboard (must be a logged‑in owner)
 router.get('/owner', requireRole('owner'), (req, res) => {
-  res.render('owner_dashboard', { ownerId: req.session.user.id });
+  res.render('owner-dashboard', { ownerId: req.session.user.id });
 });
 
 // POST /users/logout  –  clear the session and send back to login

@@ -122,6 +122,27 @@
       <% }); %>
     </tbody>
   </table>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          dogUrl: '',
+          firstClick: false,
+          secondClick: false
+        };
+      },
+      methods: {
+        async getDog() {
+          const res = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await res.json();
+          this.dogUrl = data.message;
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
 </body>

@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
 
                 const user = results[0];
 
-                bcrypt.compare(password, user.password, (bcrypterr, isMatch) => {
+                
                     if (bcrypterr) {
                         console.error("Bcrypt error:", bcrypterr);
                         return res.sendStatus(500);
@@ -47,7 +47,7 @@ router.post('/login', (req, res) => {
                         role: user.role
                     };
                     res.redirect('/');
-                });
+
             });
         });
     }

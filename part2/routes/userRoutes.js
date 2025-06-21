@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/api/user/login');
+        return res.redirect('/users/login');
     }
   const { username, email, password, role } = req.body;
 
@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 
 router.get('/me', (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/api/user/login');
+        return res.redirect('/users/login');
   }
   res.json(req.session.user);
 });

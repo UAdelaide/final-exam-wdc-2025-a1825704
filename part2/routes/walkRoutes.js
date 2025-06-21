@@ -5,7 +5,7 @@ const db = require('../models/db');
 // GET all walk requests (for walkers to view)
 router.get('/', async (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/user/login');
+        return res.redirect('/users/login');
     }
   try {
     const [rows] = await db.query(`
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/api/user/login');
+        return res.redirect('/users/login');
     }
   const { dog_id, requested_time, duration_minutes, location } = req.body;
 
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 // POST an application to walk a dog (from walker)
 router.post('/:id/apply', async (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/api/user/login');
+        return res.redirect('/users/login');
     }
   const requestId = req.params.id;
   const { walker_id } = req.body;

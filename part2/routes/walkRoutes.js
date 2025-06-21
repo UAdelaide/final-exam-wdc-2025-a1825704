@@ -7,7 +7,7 @@ router.get('/', function (req, res) {
 });
 
 // GET all walk requests (for walkers to view)
-router.get('/walks', async (req, res) => {
+router.get('/api/walks', async (req, res) => {
   if (!req.session.user) {
         return res.redirect('/users/login');
     }

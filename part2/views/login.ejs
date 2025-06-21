@@ -109,31 +109,27 @@
   </div>
 
   <script>
-  const { createApp, ref } = Vue;
+    const { createApp, ref, onMounted } = Vue;
 
-  createApp({
-    setup() {
-      const imageUrl = ref('');
+    createApp({
+      setup() {
+        const imageUrl = ref('');
 
-      async function fetchRandomDog() {
-        try {
-          const res = await fetch('https://dog.ceo/api/breeds/image/random');
-          const data = await res.json();
-          imageUrl.value = data.message;
-        } catch (err) {
-          console.error('Failed to fetch dog image:', err);
+        async function fetchRandomDog() {
+          try {
+            const res   = await fetch('https://dog.ceo/api/breeds/image/random');
+            const data  = await res.json();
+            imageUrl.value = data.message;
+          } catch (err) {
+            console.error('Failed to fetch dog image:', err);
+          }
         }
+
+        onMounted(fetchRandomDog);
+
+        return { imageUrl };
       }
-
-      // Optional: load one on startup
-      fetchRandomDog();
-
-      return {
-        imageUrl,
-        fetchRandomDog
-      };
-    }
-  }).mount('#app');
-</script>
+    }).mount('#app');
+  </script>
 </body>
 </html>

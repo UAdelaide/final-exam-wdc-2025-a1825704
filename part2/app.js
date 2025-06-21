@@ -3,6 +3,7 @@ const path = require('path');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var engines = require('consolidate');
 
 require('dotenv').config();
 
@@ -31,7 +32,6 @@ app.use('/', walkRoutes);
 app.use('/users', userRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
-var engines = require('consolidate');
 app.engine('html', engines.mustache);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));

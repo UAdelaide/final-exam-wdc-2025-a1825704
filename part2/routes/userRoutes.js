@@ -45,11 +45,11 @@ router.post('/login', (req, res) => {
 
     // Checks that there is both a username and password
     if (username && password) {
-        // req.pool.getConnection((err, connection) => {
-        //     if (err) {
-        //         console.error("Database connection error:", err);
-        //         return res.sendStatus(500);
-        //     }
+        req.pool.getConnection((err, connection) => {
+            if (err) {
+                console.error("Database connection error:", err);
+                return res.sendStatus(500);
+            }
 
             // Searches Users table in db for matching username
             const query = "SELECT * FROM Users WHERE username = ?";
@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
                     if(user.role === 'owner')
                     res.redirect('/');
             });
-        // });
+        });
     }
     else {
         return res.status(400).send("Please provide login credentials");

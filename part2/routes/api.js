@@ -18,7 +18,6 @@ try {
 });
 
 router.get('/api/walkrequests/open', function(req, res, next) {
-const pool = req.pool;
 
 try {
     db.query(
@@ -37,10 +36,9 @@ try {
 });
 
 router.get('/api/walkers/summary', function(req, res, next) {
-const pool = req.pool;
 
 try {
-    pool.query(`
+    db.query(`
     SELECT Users.username AS walker_username, COUNT(WalkRatings.rating_id) AS total_ratings, COALESCE(ROUND(AVG(WalkRatings.rating), 2), 0) AS average_ratings,
     COUNT(DISTINCT CASE WHEN WalkRequests.status = 'completed' THEN WalkRequests.request_id END) AS completed_walks
     FROM Users

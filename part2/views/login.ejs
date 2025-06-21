@@ -117,7 +117,7 @@
         try {
           const res = await fetch('https://dog.ceo/api/breeds/image/random');
           const data = await res.json();
-          imageUrl.value = data.message; // "message" contains the image URL
+          imageUrl.value = data.message;
         } catch (err) {
           console.error('Failed to fetch dog image:', err);
         }

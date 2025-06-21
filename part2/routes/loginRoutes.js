@@ -32,11 +32,6 @@ router.post('/login', (req, res) => {
 
                 const user = results[0];
 
-                
-                    if (bcrypterr) {
-                        console.error("Bcrypt error:", bcrypterr);
-                        return res.sendStatus(500);
-                    }
                     if (!isMatch) {
                         return res.status(401).render('login', { error: "Invalid username or password" });
                     }

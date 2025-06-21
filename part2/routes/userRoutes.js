@@ -4,6 +4,7 @@ const db = require('../models/db');
 
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
+  if (!req.session.user) return res.status(401).send("Not logged in");
   try {
     const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
     res.json(rows);
@@ -14,6 +15,7 @@ router.get('/', async (req, res) => {
 
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
+  if (!req.session.user) return res.status(401).send("Not logged in");
   const { username, email, password, role } = req.body;
 
   try {
@@ -29,6 +31,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/me', (req, res) => {
+  if (!req.session.user) return res.status(401).send("Not logged in");
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
   }

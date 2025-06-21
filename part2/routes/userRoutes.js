@@ -79,4 +79,12 @@ router.get('/owner', function (res, req) {
   res.render('owner');
 });
 
+// Logout
+router.post('/logout', function (req, res) {
+    if (req.session.user !== undefined) {
+        delete req.session.user;
+    }
+    res.redirect('');
+});
+
 module.exports = router;

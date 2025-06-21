@@ -46,8 +46,7 @@ router.post('/login', (req, res) => {
     // Checks that there is both a username and password
     if (username && password) {
             // Searches Users table in db for matching username
-            const query = "SELECT * FROM Users WHERE username = ?";
-            db.query(query, [username], (error, results) => {
+            db.query(`SELECT * FROM Users WHERE username = ?`, [username], (error, results) => {
                 if (error) {
                     console.error("Query error:", error);
                     return res.sendStatus(500);

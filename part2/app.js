@@ -3,6 +3,7 @@ const path = require('path');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mysql = require('mysql');
 
 require('dotenv').config();
 

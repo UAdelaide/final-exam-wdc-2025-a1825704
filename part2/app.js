@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
-var apiRouter = require('./routes/api');
 
 app.use(session({
   secret: 'hello',
@@ -31,7 +30,6 @@ app.use(session({
 
 app.use('/', walkRoutes);
 app.use('/users', userRoutes);
-app.use('/api', apiRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('html', engines.mustache);

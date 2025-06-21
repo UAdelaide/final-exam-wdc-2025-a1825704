@@ -72,11 +72,11 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
-router.get('/dogs', ensureAuth, async (req, res) => {
+router.get('/dogs', async (req, res) => {
   try {
     const ownerId = req.user.id; // assuming Passport or similar populates req.user
 
-    const dogs = await Dog.findAll({
+    const dogs = await db.findAll({
       where: { owner_id: ownerId },
       attributes: ['id', 'name'] // return only necessary fields
     });

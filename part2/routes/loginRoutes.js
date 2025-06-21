@@ -23,13 +23,15 @@ router.post('/login', (req, res) => {
                     console.error("Query error:", error);
                     return res.sendStatus(500);
                 }
-                
+
+                // No results returns an error
                 if (results.length === 0) {
                     return res.status(401).render('login', { error: "Invalid username or password" });
                 }
 
                 const user = results[0];
 
+                    // If the passwords don't match send an error
                     if (password !== user.password) {
                         return res.status(401).render('login', { error: "Invalid username or password" });
                     }

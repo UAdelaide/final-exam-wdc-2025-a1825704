@@ -11,7 +11,7 @@
   <div id="app" class="container py-4">
     <h1 class="mb-4 text-primary">Owner Dashboard</h1>
     <form action="/users/logout" method="POST" style="display:inline;">
-      <button type="submit">Logout</button>
+      <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
     </form>
 
     <!-- Walk request form -->
@@ -21,12 +21,20 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="submitWalkRequest">
+          <!-- Dog selector (replaces numeric input) -->
           <div class="mb-3">
-            <label class="form-label">Dog ID</label>
-            <input v-model="form.dog_id" type="number" class="form-control" required>
+            <label class="form-label">Dog</label>
+            <!-- NEW: dropdown list of the owner’s dogs -->
+            <select v-model="form.dog_id" class="form-select" required>
+              <option disabled value="">Choose a dog</option> <!-- default -->
+              <option v-for="dog in dogs" :key="dog.id" :value="dog.id">
+                {{ dog.name }}
+              </option>
+            </select>
           </div>
+
           <div class="mb-3">
-            <label class="form-label">Requested Date & Time</label>
+            <label class="form-label">Requested Date &amp; Time</label>
             <input v-model="form.requested_time" type="datetime-local" class="form-control" required>
           </div>
           <div class="mb-3">
@@ -72,6 +80,7 @@
 
     createApp({
       setup() {
+        /* ---------- state ---------- */
         const form = ref({
           dog_id: '',
           requested_time: '',
@@ -79,19 +88,33 @@
           location: ''
         });
 
-        const walks = ref([]);
+        const walks  = ref([]);
+        const dogs   = ref([]);            // NEW: list of owner’s dogs
         const message = ref('');
-        const error = ref('');
+        const error   = ref('');
 
+        /* ---------- data loaders ---------- */
         async function loadWalks() {
           try {
             const res = await fetch('/api/walks');
+            if (!res.ok) throw new Error('Failed to load walk requests');
             walks.value = await res.json();
           } catch (err) {
-            error.value = 'Failed to load walk requests';
+            error.value = err.message;
           }
         }
 
+        async function loadDogs() {        // NEW: fetch owner’s dogs
+          try {
+            const res = await fetch('/api/dogs'); // adjust endpoint if needed
+            if (!res.ok) throw new Error('Failed to load dogs');
+            dogs.value = await res.json();
+          } catch (err) {
+            error.value = err.message;
+          }
+        }
+
+        /* ---------- submit walk request ---------- */
         async function submitWalkRequest() {
           try {
             const res = await fetch('/api/walks', {
@@ -100,17 +123,11 @@
               body: JSON.stringify(form.value)
             });
             const result = await res.json();
-
             if (!res.ok) throw new Error(result.error || 'Error submitting walk request');
 
             message.value = result.message;
             error.value = '';
-            form.value = {
-              dog_id: '',
-              requested_time: '',
-              duration_minutes: '',
-              location: ''
-            };
+            form.value = { dog_id: '', requested_time: '', duration_minutes: '', location: '' };
             loadWalks();
           } catch (err) {
             error.value = err.message;
@@ -118,13 +135,16 @@
           }
         }
 
+        /* ---------- on mount ---------- */
         onMounted(() => {
           loadWalks();
+          loadDogs();                      // NEW
         });
 
         return {
           form,
           walks,
+          dogs,                           // NEW
           message,
           error,
           submitWalkRequest

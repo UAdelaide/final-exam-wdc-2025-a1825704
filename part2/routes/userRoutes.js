@@ -67,16 +67,26 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/login', function (req, res) {
+// GET /users/login  –  show the login form
+router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/walk', function (res, req) {
-  res.render('walk');
+// GET /users/walk  –  walker dashboard (must be a logged‑in walker)
+router.get('/walk', requireRole('walker'), (req, res) => {
+  res.render('walker_dashboard', { walkerId: req.session.user.id });
 });
 
-router.get('/owner', function (res, req) {
-  res.render('owner');
+// GET /users/owner  –  owner dashboard (must be a logged‑in owner)
+router.get('/owner', requireRole('owner'), (req, res) => {
+  res.render('owner_dashboard', { ownerId: req.session.user.id });
+});
+
+// POST /users/logout  –  clear the session and send back to login
+router.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/users/login');
+  });
 });
 
 // Logout

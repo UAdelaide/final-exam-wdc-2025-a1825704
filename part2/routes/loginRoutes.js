@@ -8,7 +8,7 @@ const { body, validationResult } = require('express-validator');
 
 // Standard username/password login
 router.post('/login', (req, res) => {
-    const { username, password, idtoken } = req.body;
+    const { username, password } = req.body;
 
     if (username && password) {
         req.pool.getConnection((err, connection) => {
@@ -17,7 +17,7 @@ router.post('/login', (req, res) => {
                 return res.sendStatus(500);
             }
 
-            const query = "SELECT * FROM users WHERE username = ?";
+            const query = "SELECT * FROM Users WHERE username = ?";
             connection.query(query, [username], (error, results) => {
                 connection.release();
 

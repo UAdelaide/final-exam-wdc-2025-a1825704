@@ -94,7 +94,7 @@ router.get('/owner', requireRole('owner'), (req, res) => {
 // POST /users/logout  –  clear the session and send back to login
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
-    res.redirect('/owner');
+    res.redirect('/users/login');
   });
 });
 

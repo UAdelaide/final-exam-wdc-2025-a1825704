@@ -11,11 +11,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
-const loginRoutes = require('./routes/loginRoutes');
+const login = require('./routes/loginRoutes');
 
 app.use('/', walkRoutes);
-app.use('/', userRoutes);
-app.use('/', loginRoutes);
+app.use('/users', userRoutes);
+app.use('/login', loginRoutes);
 
 // Export the app instead of listening here
 module.exports = app;

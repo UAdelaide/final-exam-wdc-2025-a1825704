@@ -90,7 +90,7 @@ router.get('/walk', function (res, req) {
 });
 
 router.get('/owner', function (res, req) {
-
+  res.render('owner');
 });
 
 

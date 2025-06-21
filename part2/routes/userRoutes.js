@@ -50,10 +50,10 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.user = {
-      id: rows.user_id,
+      id: rows[0].user_id,
       username: username,
-      email: rows.email,
-      role: rows.role
+      email: rows[0].email,
+      role: rows[0].role
     };
 
     if (rows.role === 'owner') {

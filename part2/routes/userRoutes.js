@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
-// Default
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
-
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
   try {

@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
                     if(user.role === 'owner') {
                       res.redirect('/owner');
                     } else {
-                      res.redirect('/walk')
+                      res.redirect('/walk');
                     }
             });
         });

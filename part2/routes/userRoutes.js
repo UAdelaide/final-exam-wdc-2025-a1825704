@@ -48,8 +48,6 @@ router.post('/login', (req, res) => {
             // Searches Users table in db for matching username
             const query = "SELECT * FROM Users WHERE username = ?";
             db.query(query, [username], (error, results) => {
-                db.release();
-
                 if (error) {
                     console.error("Query error:", error);
                     return res.sendStatus(500);

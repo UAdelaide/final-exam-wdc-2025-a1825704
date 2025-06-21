@@ -42,7 +42,6 @@ router.get('/me', (req, res) => {
   res.json(req.session.user);
 });
 
-// POST login (dummy version)
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -89,12 +88,12 @@ router.get('/walk', (req, res) => {
   res.render('../public/walker-dashboard.html');
 });
 
-// GET /users/owner  –  owner dashboard (must be a logged‑in owner)
+// GET /users/owner
 router.get('/owner', (req, res) => {
   res.render('../public/owner-dashboard.html');
 });
 
-// POST /users/logout  –  clear the session and send back to login
+// POST /users/logout
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/users/login');

@@ -84,6 +84,8 @@ router.get('/login', async (req, res) => {
 }
 });
 
+router.get('/test/dogs')
+
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)
 router.get('/walk', (req, res) => {
   res.render('../public/walker-dashboard.html');

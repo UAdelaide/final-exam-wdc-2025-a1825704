@@ -41,7 +41,7 @@ router.post('/login', (req, res) => {
                         return res.status(401).render('login', { error: "Invalid username or password" });
                     }
                     req.session.user = {
-                        id: user.,
+                        id: user.uers_id,
                         username: user.username,
                         email: user.email,
                         role: user.role

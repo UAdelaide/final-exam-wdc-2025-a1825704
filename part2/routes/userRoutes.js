@@ -75,6 +75,8 @@ router.get('/walk', function (res, req) {
   res.render('walk');
 });
 
-router.get('')
+router.get('/owner', function (res, req) {
+  res.render('/owner');
+});
 
 module.exports = router;

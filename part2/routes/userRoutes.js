@@ -85,7 +85,7 @@ router.get('/login', function (req, res) {
     res.render('login');
 });
 
-
+router.get('/walk', function (res, req, next));
 
 
 // Logout

@@ -4,9 +4,6 @@ const db = require('../models/db');
 
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
-  if (!req.session.user) {
-        return res.redirect('/users/login');
-  }
   try {
     const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
     res.json(rows);
@@ -33,68 +30,31 @@ router.post('/register', async (req, res) => {
 
 router.get('/me', (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/users/login');
+    return res.status(401).json({ error: 'Not logged in' });
   }
   res.json(req.session.user);
 });
 
-// Standard username/password login
-router.post('/login', (req, res) => {
-    // Gets username and password from the inputs
-    const { username, password } = req.body;
+// POST login (dummy version)
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
 
-    // Checks that there is both a username and password
-    if (username && password) {
-            // Searches Users table in db for matching username
-            const [results] = db.query(`SELECT * FROM Users WHERE username = ?`, [username]);
+  try {
+    const [rows] = await db.query(`
+      SELECT user_id, username, role FROM Users
+      WHERE email = ? AND password_hash = ?
+    `, [email, password]);
 
-                // No results returns an error
-                if (results.length === 0) {
-                    return res.status(401).render('login', { error: "Invalid username or password" });
-                }
-
-                const user = results;
-
-                    // If the passwords don't match send an error
-                    if (password !== user.password_hash) {
-                        return res.status(401).render('/users/login', { error: "Invalid username or password" });
-                    }
-                    req.session.user = {
-                        id: user.uers_id,
-                        username: user.username,
-                        email: user.email,
-                        role: user.role
-                    };
-                    // if(user.role === 'owner') {
-                    //   res.redirect('/owner');
-                    // } else {
-                    //   res.redirect('/walk');
-                    // }
-                    res.redirect('/');
-    } else {
-        return res.status(400).send("Please provide login credentials");
+    if (rows.length === 0) {
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
-  });
 
-router.get('/login', function (req, res) {
-    res.render('login');
+    res.json({ message: 'Login successful', user: rows[0] });
+  } catch (error) {
+    res.status(500).json({ error: 'Login failed' });
+  }
 });
 
-router.get('/walk', function (res, req) {
-  res.render('walk');
-});
-
-router.get('/owner', function (res, req) {
-  res.render('owner');
-});
-
-
-// Logout
-router.post('/logout', function (req, res) {
-    if (req.session.user !== undefined) {
-        delete req.session.user;
-    }
-    res.redirect('/users/login');
-});
+router
 
 module.exports = router;

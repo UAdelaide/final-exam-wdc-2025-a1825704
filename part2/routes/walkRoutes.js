@@ -74,7 +74,7 @@ router.post('/:id/apply', async (req, res) => {
 
 router.get('/dogs', async (req, res) => {
   try {
-    const ownerId = req.user.; // assuming Passport or similar populates req.user
+    const ownerId = req.session.user.id; // assuming Passport or similar populates req.user
 
     const [dogs] = await db.query(`SELECT * FROM Dogs WHERE owner_id = ?`, [ownerId]);
 

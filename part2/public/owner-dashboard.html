@@ -104,7 +104,7 @@
 
         async function loadDogs() {        // NEW: fetch owner’s dogs
           try {
-            const res = await fetch('/api/dogs'); // adjust endpoint if needed
+            const res = await fetch('/dogs');
             if (!res.ok) throw new Error('Failed to load dogs');
             dogs.value = await res.json();
           } catch (err) {

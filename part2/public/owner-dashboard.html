@@ -102,7 +102,7 @@
           }
         }
 
-        async function loadDogs() {        // NEW: fetch owner’s dogs
+        async function loadDogs() {
           try {
             const res = await fetch('/dogs');
             if (!res.ok) throw new Error('Failed to load dogs');
@@ -112,7 +112,6 @@
           }
         }
 
-        /* ---------- submit walk request ---------- */
         async function submitWalkRequest() {
           try {
             const res = await fetch('/api/walks', {

@@ -78,7 +78,7 @@ router.get('/walk', (req, res) => {
 });
 
 // GET /users/owner  –  owner dashboard (must be a logged‑in owner)
-router.get('/users/owner', (req, res) => {
+router.get('/owner', (req, res) => {
   res.render('owner', { ownerId: req.session.user.id });
 });
 

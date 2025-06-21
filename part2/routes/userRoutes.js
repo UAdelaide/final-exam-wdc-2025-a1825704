@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
-router.get('/', async (req, res) => {
+router.get('/', function (req, res) {
   if (!req.session.user) {
     return res.redirect('/users/login');
   }
-}
+});
+
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
   if (!req.session.user) {

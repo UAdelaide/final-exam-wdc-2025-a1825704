@@ -27,7 +27,7 @@
             <!-- Dropdown list of the owner’s dogs -->
             <select v-model="form.dog_id" class="form-select" required>
               <option disabled value="">Choose a dog</option> <!-- default -->
-              <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.name">
+              <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.dog_id">
                 {{ dog.name }}
               </option>
             </select>

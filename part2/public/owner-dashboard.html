@@ -133,16 +133,15 @@
           }
         }
 
-        /* ---------- on mount ---------- */
         onMounted(() => {
           loadWalks();
-          loadDogs();                      // NEW
+          loadDogs();
         });
 
         return {
           form,
           walks,
-          dogs,                           // NEW
+          dogs,
           message,
           error,
           submitWalkRequest

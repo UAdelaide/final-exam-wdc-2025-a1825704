@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
+router.get('/', function (req, res) {
+    return res.redirect('/users/login');
+});
+
 // GET all walk requests (for walkers to view)
 router.get('/api/walks', async (req, res) => {
   if (!req.session.user) {

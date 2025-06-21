@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
 
 router.get('/me', (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/users/login');
+    return res.redirect('/users/login');
   }
   res.json(req.session.user);
 });

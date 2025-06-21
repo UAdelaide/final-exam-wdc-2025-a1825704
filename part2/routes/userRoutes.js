@@ -82,7 +82,7 @@ router.post('/login', (req, res) => {
                     res.redirect('/');
             });
         // });
-      }
+    }
     else {
         return res.status(400).send("Please provide login credentials");
     }

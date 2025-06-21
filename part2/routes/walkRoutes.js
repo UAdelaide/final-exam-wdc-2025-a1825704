@@ -78,7 +78,7 @@ router.get('/dogs', async (req, res) => {
 
     const dogs = await db.findAll({
       where: { owner_id: ownerId },
-      attributes: ['id', 'name'] // return only necessary fields
+      attributes: ['dog_id', 'name'] // return only necessary fields
     });
 
     res.json(dogs);

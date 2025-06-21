@@ -74,12 +74,12 @@ router.get('/login', (req, res) => {
 
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)
 router.get('/walk', (req, res) => {
-  res.render('walk');
+  res.render('../public/walker-dashboard.html');
 });
 
 // GET /users/owner  –  owner dashboard (must be a logged‑in owner)
 router.get('/owner', (req, res) => {
-  res.render('../public/owner-dashboard.html', { ownerId: req.session.user.id });
+  res.render('../public/owner-dashboard.html');
 });
 
 // POST /users/logout  –  clear the session and send back to login

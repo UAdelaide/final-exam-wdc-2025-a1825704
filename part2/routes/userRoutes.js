@@ -73,7 +73,7 @@ router.get('/login', (req, res) => {
 });
 
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)
-router.get('/users/walk', (req, res) => {
+router.get('/walk', (req, res) => {
   res.render('walk', { walkerId: req.session.user.id });
 });
 

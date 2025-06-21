@@ -2,15 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
-function requireRole(role) {
-  return function (req, res, next) {
-    if (!req.session.user || req.session.user.role !== role) {
-      return res.redirect('/users/login');
-    }
-    next();
-  };
-}
-
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
   try {
@@ -82,12 +73,12 @@ router.get('/login', (req, res) => {
 });
 
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)
-router.get('/users/walk', requireRole('walker'), (req, res) => {
+router.get('/users/walk', (req, res) => {
   res.render('walk', { walkerId: req.session.user.id });
 });
 
 // GET /users/owner  –  owner dashboard (must be a logged‑in owner)
-router.get('/users/owner', requireRole('owner'), (req, res) => {
+router.get('/users/owner', (req, res) => {
   res.render('owner', { ownerId: req.session.user.id });
 });
 

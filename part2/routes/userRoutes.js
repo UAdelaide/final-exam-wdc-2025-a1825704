@@ -85,8 +85,8 @@ router.get('/login', function (req, res) {
     res.render('login');
 });
 
-router.get('/walk', function (res, req) => {
-
+router.get('/walk', function (res, req) {
+  res.render('walk');
 });
 
 

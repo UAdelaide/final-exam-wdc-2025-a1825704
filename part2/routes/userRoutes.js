@@ -77,7 +77,7 @@ router.post('/login', async (req, res) => {
 // GET /users/login
 router.get('/login', async (req, res) => {
   try {
-    const
+    const dogs = await db.query
     res.render('login', { dogs });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);

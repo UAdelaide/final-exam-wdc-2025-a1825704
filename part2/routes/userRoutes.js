@@ -56,8 +56,6 @@ router.post('/login', async (req, res) => {
       role: rows.role
     };
 
-    console.log(req.session.user.role);
-
     if (rows.role === 'owner') {
       res.redirect('/owner');
     } else {

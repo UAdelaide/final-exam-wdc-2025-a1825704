@@ -86,6 +86,8 @@ router.get('/login', function (req, res) {
 });
 
 
+
+
 // Logout
 router.post('/logout', function (req, res) {
     if (req.session.user !== undefined) {

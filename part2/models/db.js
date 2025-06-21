@@ -9,11 +9,4 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-const app = express();
-
-app.use(function(req, res, next){
-  req.pool = dbConnectionPool;
-  next();
-});
-
 module.exports = pool;

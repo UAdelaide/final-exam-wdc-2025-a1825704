@@ -87,6 +87,10 @@ router.get('/dogs', async (req, res) => {
 });
 
 // GET user id
-router.get('/api/get_user')
+router.get('/api/get_user', async (req, res) => {
+  try {
+    
+  }
+});
 
 module.exports = router;

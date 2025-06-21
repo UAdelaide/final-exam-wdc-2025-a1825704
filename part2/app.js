@@ -8,6 +8,28 @@ require('dotenv').config();
 
 const app = express();
 
+var dbConnectionPool = mysql.createPool({
+  host: 'localhost',
+  database: 'library'
+});
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  database: 'library'
+});
+connection.connect((err) => {
+  if(err) {
+    console.log('Error connecting to database: ', err);
+    return;
+  }
+  console.log('Connected to mysql database');
+});
+
+app.use(function(req, res, next){
+  req.pool = dbConnectionPool;
+  next();
+});
+
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());

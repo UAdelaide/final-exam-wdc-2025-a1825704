@@ -81,8 +81,8 @@ router.post('/login', (req, res) => {
                     if(user.role === 'owner')
                     res.redirect('/');
             });
-        });
-    }
+        // });
+      }
     else {
         return res.status(400).send("Please provide login credentials");
     }

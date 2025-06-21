@@ -79,15 +79,7 @@ router.get('/dogs', async (req, res) => {
 
     const [rows] = await db.query(`SELECT * FROM Dogs WHERE owner_id = ?`, [ownerId]);
 
-    const updatedDogs = rows.map(dogs => ({
-      ...dogs,
-      id: dogs.dog_id,
-      name: dogs.name,
-      ownerId: ownerId,
-      
-    }));
-
-    res.json(dogs);
+    res.json(rows);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch dogs' });

@@ -4,7 +4,9 @@ const db = require('../models/db');
 
 // GET all walk requests (for walkers to view)
 router.get('/', async (req, res) => {
-  if (!req.session.user) return res.status(401).send("Not logged in");
+  if (!req.session.user) {
+        return res.redirect('/api/user/login');
+    }
   try {
     const [rows] = await db.query(`
       SELECT wr.*, d.name AS dog_name, d.size, u.username AS owner_name

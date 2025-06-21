@@ -72,6 +72,7 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
+// GET the owner's dogs
 router.get('/dogs', async (req, res) => {
   try {
     const ownerId = req.session.user.id; // assuming Passport or similar populates req.user
@@ -84,4 +85,5 @@ router.get('/dogs', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch dogs' });
   }
 });
+
 module.exports = router;

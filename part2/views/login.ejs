@@ -105,6 +105,33 @@
       <% }); %>
     </tbody>
   </table>
-</html>
+
+  <script>
+  const { createApp, ref } = Vue;
+
+  createApp({
+    setup() {
+      const imageUrl = ref('');
+
+      async function fetchRandomDog() {
+        try {
+          const res = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await res.json();
+          imageUrl.value = data.message; // "message" contains the image URL
+        } catch (err) {
+          console.error('Failed to fetch dog image:', err);
+        }
+      }
+
+      // Optional: load one on startup
+      fetchRandomDog();
+
+      return {
+        imageUrl,
+        fetchRandomDog
+      };
+    }
+  }).mount('#app');
+</script>
 </body>
 </html>

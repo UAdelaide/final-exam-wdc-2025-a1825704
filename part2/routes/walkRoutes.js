@@ -86,4 +86,6 @@ router.get('/dogs', async (req, res) => {
   }
 });
 
+// GET 
+
 module.exports = router;

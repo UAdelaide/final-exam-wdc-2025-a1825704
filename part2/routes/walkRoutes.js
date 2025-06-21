@@ -89,7 +89,9 @@ router.get('/dogs', async (req, res) => {
 // GET user id
 router.get('/api/get_user', async (req, res) => {
   try {
-    res.json()
+    res.json(req.session.user.id);
+  } catch (err) {
+    
   }
 });
 

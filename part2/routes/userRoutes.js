@@ -89,6 +89,10 @@ router.get('/walk', function (res, req) {
   res.render('walk');
 });
 
+router.get('/owner', function (res, req) {
+
+});
+
 
 // Logout
 router.post('/logout', function (req, res) {

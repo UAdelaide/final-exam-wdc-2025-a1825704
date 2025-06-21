@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #434c9c, #58a6d2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 12px;
+      text-align: left;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    button[type="submit"] {
+      background-color: black;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+
+    .footer a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .google-signin-container {
+      margin-top: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 600px) {
+      .container {
+        width: 98vw;
+        min-width: 0;
+        padding: 15px;
+      }
+      body {
+        padding: 0;
+      }
+    }
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      .container {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <p>Sign in to continue</p>
+
+    <form method="POST" action="/users/login">
+      <label for="username">USERNAME</label>
+      <input type="text" name="username" required />
+
+      <label for="password">PASSWORD</label>
+      <input type="password" name="password" required />
+
+      <button type="submit">login</button>
+    </form>
+
+    <div class="google-signin-container">
+      <div id="g_id_onload"
+        data-client_id="1040327756806-hnk954g43r0ovl5m563s7fn6s7gqp02o.apps.googleusercontent.com"
+        data-login_uri="http://localhost:8080/users/login"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-callback="onGoogleSignIn"
+        data-auto_prompt="false">
+      </div>
+
+      <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-size="large"
+        data-logo_alignment="center">
+      </div>
+    </div>
+
+    <div class="footer">
+      Don't have an account? <a href="/users/register" style="color: #007bff; text-decoration: none;">register here</a>
+    </div>
+  </div>
+</body>
+</html>

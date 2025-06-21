@@ -82,12 +82,12 @@ router.get('/login', (req, res) => {
 });
 
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)
-router.get('/walk', requireRole('walker'), (req, res) => {
+router.get('/users/walk', requireRole('walker'), (req, res) => {
   res.render('walk', { walkerId: req.session.user.id });
 });
 
 // GET /users/owner  –  owner dashboard (must be a logged‑in owner)
-router.get('/owner', requireRole('owner'), (req, res) => {
+router.get('/users/owner', requireRole('owner'), (req, res) => {
   res.render('owner', { ownerId: req.session.user.id });
 });
 

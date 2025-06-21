@@ -14,7 +14,7 @@ router.post('/login', (req, res) => {
                 return res.sendStatus(500);
             }
 
-            // Searches db for
+            // Searches Users table in db for matching username
             const query = "SELECT * FROM Users WHERE username = ?";
             connection.query(query, [username], (error, results) => {
                 connection.release();
@@ -23,7 +23,7 @@ router.post('/login', (req, res) => {
                     console.error("Query error:", error);
                     return res.sendStatus(500);
                 }
-
+                
                 if (results.length === 0) {
                     return res.status(401).render('login', { error: "Invalid username or password" });
                 }

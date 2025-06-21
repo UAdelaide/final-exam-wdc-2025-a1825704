@@ -72,6 +72,8 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
-router.get('/dogs', function (res, req));
+router.get('/dogs', function (res, req) {
+  const [rows] = 
+});
 
 module.exports = router;

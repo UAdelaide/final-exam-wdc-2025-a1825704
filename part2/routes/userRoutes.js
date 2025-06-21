@@ -2,96 +2,70 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
-// GET all users (for admin/testing)
+// GET all walk requests (for walkers to view)
 router.get('/', async (req, res) => {
   if (!req.session.user) {
         return res.redirect('/users/login');
-  }
+    }
   try {
-    const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
+    const [rows] = await db.query(`
+      SELECT wr.*, d.name AS dog_name, d.size, u.username AS owner_name
+      FROM WalkRequests wr
+      JOIN Dogs d ON wr.dog_id = d.dog_id
+      JOIN Users u ON d.owner_id = u.user_id
+      WHERE wr.status = 'open'
+    `);
     res.json(rows);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch users' });
+    console.error('SQL Error:', error);
+    res.status(500).json({ error: 'Failed to fetch walk requests' });
   }
 });
 
-// POST a new user (simple signup)
-router.post('/register', async (req, res) => {
-  const { username, email, password, role } = req.body;
+// POST a new walk request (from owner)
+router.post('/', async (req, res) => {
+  if (!req.session.user) {
+        return res.redirect('/users/login');
+    }
+  const { dog_id, requested_time, duration_minutes, location } = req.body;
 
   try {
     const [result] = await db.query(`
-      INSERT INTO Users (username, email, password_hash, role)
+      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location)
       VALUES (?, ?, ?, ?)
-    `, [username, email, password, role]);
+    `, [dog_id, requested_time, duration_minutes, location]);
 
-    res.status(201).json({ message: 'User registered', user_id: result.insertId });
+    res.status(201).json({ message: 'Walk request created', request_id: result.insertId });
   } catch (error) {
-    res.status(500).json({ error: 'Registration failed' });
+    res.status(500).json({ error: 'Failed to create walk request' });
   }
 });
 
-router.get('/me', (req, res) => {
+// POST an application to walk a dog (from walker)
+router.post('/:id/apply', async (req, res) => {
   if (!req.session.user) {
         return res.redirect('/users/login');
+    }
+  const requestId = req.params.id;
+  const { walker_id } = req.body;
+
+  try {
+    await db.query(`
+      INSERT INTO WalkApplications (request_id, walker_id)
+      VALUES (?, ?)
+    `, [requestId, walker_id]);
+
+    await db.query(`
+      UPDATE WalkRequests
+      SET status = 'accepted'
+      WHERE request_id = ?
+    `, [requestId]);
+
+    res.status(201).json({ message: 'Application submitted' });
+  } catch (error) {
+    console.error('SQL Error:', error);
+    res.status(500).json({ error: 'Failed to apply for walk' });
   }
-  res.json(req.session.user);
-});
-
-// Standard username/password login
-router.post('/login', (req, res) => {
-    // Gets username and password from the inputs
-    const { username, password } = req.body;
-
-    // Checks that there is both a username and password
-    if (username && password) {
-            // Searches Users table in db for matching username
-            const query = "SELECT * FROM Users WHERE username = ?";
-            db.query(query, [username], (error, results) => {
-                if (error) {
-                    console.error("Query error:", error);
-                    return res.sendStatus(500);
-                }
-
-                // No results returns an error
-                if (results.length === 0) {
-                    return res.status(401).render('login', { error: "Invalid username or password" });
-                }
-
-                const user = results[0];
-
-                    // If the passwords don't match send an error
-                    if (password !== user.password) {
-                        return res.status(401).render('/users/login', { error: "Invalid username or password" });
-                    }
-                    req.session.user = {
-                        id: user.uers_id,
-                        username: user.username,
-                        email: user.email,
-                        role: user.role
-                    };
-                    if(user.role === 'owner') {
-                      res.redirect('/owner');
-                    } else {
-                      res.redirect('/walk');
-                    }
-            });
-    } else {
-        return res.status(400).send("Please provide login credentials");
-    }
-  });
-
-router.get('/login', function (req, res) {
-    res.render('login');
-});
-
-
-// Logout
-router.post('/logout', function (req, res) {
-    if (req.session.user !== undefined) {
-        delete req.session.user;
-    }
-    res.redirect('/users/login');
 });
 
 module.exports = router;

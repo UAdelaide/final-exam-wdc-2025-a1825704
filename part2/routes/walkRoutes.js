@@ -82,7 +82,9 @@ router.get('/dogs', async (req, res) => {
     const updatedDogs = rows.map(dogs => ({
       ...dogs,
       id: dogs.dog_id,
-      name: dogs.name
+      name: dogs.name,
+      ownerId: ownerId,
+      
     }));
 
     res.json(dogs);

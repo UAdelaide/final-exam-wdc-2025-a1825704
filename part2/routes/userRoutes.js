@@ -75,7 +75,7 @@ router.post('/login', (req, res) => {
                     // } else {
                     //   res.redirect('/walk');
                     // }
-                    
+                    res.redirect('/');
             });
     } else {
         return res.status(400).send("Please provide login credentials");

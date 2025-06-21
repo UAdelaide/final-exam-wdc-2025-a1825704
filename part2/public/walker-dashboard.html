@@ -50,7 +50,7 @@
 
         async function loadWalkRequests() {
           try {
-            const res = await fetch('/walks');
+            const res = await fetch('/api/walks');
             if (!res.ok) throw new Error('Failed to load walk requests');
             walks.value = await res.json();
           } catch (err) {
@@ -60,7 +60,7 @@
 
         async function applyToWalk(requestId) {
           try {
-            const res = await fetch(`/walks/${requestId}/apply`, {
+            const res = await fetch(`/api/walks/${requestId}/apply`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ walker_id: user })

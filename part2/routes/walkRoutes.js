@@ -72,8 +72,19 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
-router.get('/dogs', function (res, req) {
-  const [rows] = 
-});
+router.get('/dogs', ensureAuth, async (req, res) => {
+  try {
+    const ownerId = req.user.id; // assuming Passport or similar populates req.user
 
+    const dogs = await Dog.findAll({
+      where: { owner_id: ownerId },
+      attributes: ['id', 'name'] // return only necessary fields
+    });
+
+    res.json(dogs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
 module.exports = router;

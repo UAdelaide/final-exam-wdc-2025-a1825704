@@ -89,12 +89,4 @@ router.post('/logout', (req, res) => {
   });
 });
 
-// Logout
-router.post('/logout', function (req, res) {
-    if (req.session.user !== undefined) {
-        delete req.session.user;
-    }
-    res.redirect('/users/login');
-});
-
 module.exports = router;

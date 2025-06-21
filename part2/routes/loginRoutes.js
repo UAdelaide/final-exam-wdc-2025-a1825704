@@ -44,76 +44,13 @@ router.post('/login', (req, res) => {
                         id: user.UserID,
                         username: user.username,
                         email: user.email,
-                        role: user.role,
-                        profile_picture: user.profile_picture || null
+                        role: user.role
                     };
                     res.redirect('/');
                 });
             });
         });
     }
-
-    // Google login flow
-    else if (idtoken) {
-        client.verifyIdToken({
-            idToken: idtoken,
-            audience: CLIENT_ID
-        }).then((ticket) => {
-            const payload = ticket.getPayload();
-            const googleId = payload.sub;
-            const { email, name } = payload;
-
-            req.pool.getConnection((err, connection) => {
-                if (err) {
-                    console.error("Database connection error:", err);
-                    return res.sendStatus(500);
-                }
-                // Try to find user by google_id or email
-                const query = "SELECT * FROM users WHERE google_id = ? OR email = ?";
-                connection.query(query, [googleId, email], (error, results) => {
-                    if (error) {
-                        connection.release();
-                        console.error("Query error:", error);
-                        return res.sendStatus(500);
-                    }
-                    if (results.length > 0) {
-                        // User exists, log them in
-                        const user = results[0];
-                        req.session.user = {
-                            id: user.UserID,
-                            username: user.username,
-                            email: user.email,
-                            role: user.role,
-                            profile_picture: user.profile_picture || null
-                        };
-                        connection.release();
-                        return res.sendStatus(200);
-                    } else {
-                        // Create new user
-                        const insertQuery = "INSERT INTO users (username, email, google_id) VALUES (?, ?, ?)";
-                        connection.query(insertQuery, [name, email, googleId], (insertErr, insertResults) => {
-                            connection.release();
-                            if (insertErr) {
-                                console.error("Insert error:", insertErr);
-                                return res.sendStatus(500);
-                            }
-                            req.session.user = {
-                                id: insertResults.insertId,
-                                username: name,
-                                email: email,
-                                profile_picture: null
-                            };
-                            return res.sendStatus(200);
-                        });
-                    }
-                });
-            });
-        }).catch((err) => {
-            console.error("Google token error:", err);
-            res.sendStatus(500);
-        });
-    }
-
     else {
         return res.status(400).send("Please provide login credentials");
     }

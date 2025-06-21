@@ -45,16 +45,10 @@ router.post('/login', (req, res) => {
 
     // Checks that there is both a username and password
     if (username && password) {
-        req.pool.getConnection((err, connection) => {
-            if (err) {
-                console.error("Database connection error:", err);
-                return res.sendStatus(500);
-            }
-
             // Searches Users table in db for matching username
             const query = "SELECT * FROM Users WHERE username = ?";
-            connection.query(query, [username], (error, results) => {
-                connection.release();
+            db.query(query, [username], (error, results) => {
+                db.release();
 
                 if (error) {
                     console.error("Query error:", error);

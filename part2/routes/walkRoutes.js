@@ -24,7 +24,9 @@ router.get('/', async (req, res) => {
 
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
-  if (!req.session.user) return res.status(401).send("Not logged in");
+  if (!req.session.user) {
+        return res.redirect('/api/user/login');
+    }
   const { dog_id, requested_time, duration_minutes, location } = req.body;
 
   try {
@@ -41,7 +43,9 @@ router.post('/', async (req, res) => {
 
 // POST an application to walk a dog (from walker)
 router.post('/:id/apply', async (req, res) => {
-  if (!req.session.user) return res.status(401).send("Not logged in");
+  if (!req.session.user) {
+        return res.redirect('/api/user/login');
+    }
   const requestId = req.params.id;
   const { walker_id } = req.body;
 

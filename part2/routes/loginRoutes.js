@@ -41,7 +41,7 @@ router.post('/login', (req, res) => {
                         email: user.email,
                         role: user.role
                     };
-                    
+                    if(user.role === 'owner')
                     res.redirect('/');
             });
         });

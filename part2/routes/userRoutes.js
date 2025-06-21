@@ -5,7 +5,7 @@ const db = require('../models/db');
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
   if (!req.session.user) {
-        return res.redirect('/login');
+        return res.redirect('/api/user/login');
     }
   try {
     const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');

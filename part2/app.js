@@ -28,14 +28,14 @@ app.use(session({
   cookie: { secure: false }
 }));
 
-app.use('/', walkRoutes);
-app.use('/users', userRoutes);
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('html', engines.mustache);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use('/', walkRoutes);
+app.use('/users', userRoutes);
 
 // Export the app instead of listening here
 module.exports = app;

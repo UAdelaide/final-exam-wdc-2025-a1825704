@@ -76,10 +76,8 @@ router.get('/dogs', async (req, res) => {
   try {
     const ownerId = req.user.id; // assuming Passport or similar populates req.user
 
-    const dogs = await db.findAll({
-      where: { owner_id: ownerId },
-      attributes: ['dog_id', 'name'] // return only necessary fields
-    });
+    const dogs = await db.query(`
+      `);
 
     res.json(dogs);
   } catch (err) {

@@ -3,8 +3,10 @@ var router = express.Router();
 
 // Standard username/password login
 router.post('/login', (req, res) => {
+    // Gets username and password from the inputs
     const { username, password } = req.body;
 
+    
     if (username && password) {
         req.pool.getConnection((err, connection) => {
             if (err) {

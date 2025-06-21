@@ -45,7 +45,7 @@ router.post('/login', (req, res) => {
 
     // Checks that there is both a username and password
     if (username && password) {
-        db.getConnection((err, connection) => {
+        req.pool.getConnection((err, connection) => {
             if (err) {
                 console.error("Database connection error:", err);
                 return res.sendStatus(500);

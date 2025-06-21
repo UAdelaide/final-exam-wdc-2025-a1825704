@@ -70,11 +70,12 @@ router.post('/login', (req, res) => {
                         email: user.email,
                         role: user.role
                     };
-                    if(user.role === 'owner') {
-                      res.redirect('/owner');
-                    } else {
-                      res.redirect('/walk');
-                    }
+                    // if(user.role === 'owner') {
+                    //   res.redirect('/owner');
+                    // } else {
+                    //   res.redirect('/walk');
+                    // }
+                    
             });
     } else {
         return res.status(400).send("Please provide login credentials");

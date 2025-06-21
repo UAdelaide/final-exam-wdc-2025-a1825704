@@ -53,6 +53,7 @@
             const getUser = await fetch('/api/get_user');
             if (!getUser.ok) throw new Error('Failed to get user');
             user.value = await res.json();
+            console.log(user.value);
           } catch (err) {
             error.value = err.message;
           }

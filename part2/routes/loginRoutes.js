@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
 
                 const user = results[0];
 
-                    if (password != ) {
+                    if (password !== user.password) {
                         return res.status(401).render('login', { error: "Invalid username or password" });
                     }
                     req.session.user = {
@@ -41,8 +41,8 @@ router.post('/login', (req, res) => {
                         email: user.email,
                         role: user.role
                     };
+                    
                     res.redirect('/');
-
             });
         });
     }

@@ -77,13 +77,8 @@ router.post('/login', async (req, res) => {
 // GET /users/login
 router.get('/login', (req, res) => {
   try {
-    db.query('SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs INNER JOIN Users ON Users.user_id = Dogs.owner_id', (err, results) => {
-        if (err) {
-            console.log('Error Fetching Dogs:', err);
-            return res.status(500).send('Could not load dogs');
-        }
-
-    });
+    const dogs
+    res.render('login', { dogs });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);
 }

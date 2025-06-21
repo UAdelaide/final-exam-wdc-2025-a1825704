@@ -14,6 +14,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+app.use(session({
+  secret: 'hello',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
 app.use('/', walkRoutes);
 app.use('/users', userRoutes);
 

@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
     };
 
     if (rows[0].role === 'owner') {
-      res.redirect('../public/owner-dashboard.html');
+      res.redirect('/users/owner');
     } else {
       res.redirect('/users/walk');
     }
@@ -74,7 +74,7 @@ router.get('/login', (req, res) => {
 
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)
 router.get('/walk', (req, res) => {
-  res.render('walk', { walkerId: req.session.user.id });
+  res.render('../public/owner-dashboard.html');
 });
 
 // GET /users/owner  –  owner dashboard (must be a logged‑in owner)

@@ -91,7 +91,8 @@ router.get('/api/get_user', async (req, res) => {
   try {
     res.json(req.session.user.id);
   } catch (err) {
-    
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch user id'});
   }
 });
 

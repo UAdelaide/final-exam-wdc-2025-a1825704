@@ -31,6 +31,7 @@ app.use(session({
 
 app.use('/', walkRoutes);
 app.use('/users', userRoutes);
+app.use('/', apiRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('html', engines.mustache);

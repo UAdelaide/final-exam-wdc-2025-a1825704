@@ -82,11 +82,11 @@ router.get('/login', (req, res) => {
             console.log('Error Fetching Dogs:', err);
             return res.status(500).send('Could not load dogs');
         }
+        res.render('login', { dogs: results });
     });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);
 }
-  res.render('login', { dogs: results });
 });
 
 // GET /users/walk  –  walker dashboard (must be a logged‑in walker)

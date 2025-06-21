@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
                     return res.status(401).render('login', { error: "Invalid username or password" });
                 }
 
-                const user = results[0];
+                const user = results;
 
                     // If the passwords don't match send an error
                     if (password !== user.password_hash) {

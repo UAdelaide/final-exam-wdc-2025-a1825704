@@ -24,7 +24,7 @@
           <!-- Dog selector (replaces numeric input) -->
           <div class="mb-3">
             <label class="form-label">Dog</label>
-            <!-- NEW: dropdown list of the owner’s dogs -->
+            <!-- Dropdown list of the owner’s dogs -->
             <select v-model="form.dog_id" class="form-select" required>
               <option disabled value="">Choose a dog</option> <!-- default -->
               <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.dog_id">

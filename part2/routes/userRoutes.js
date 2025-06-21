@@ -9,9 +9,6 @@ router.get('/', function (req, res, next) {
 
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
-  if (!req.session.user) {
-        return res.redirect('/api/user/login');
-    }
   try {
     const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
     res.json(rows);

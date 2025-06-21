@@ -4,7 +4,6 @@ const db = require('../models/db');
 
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
-
   if (!req.session.user) {
     return res.redirect('/users/login');
   }

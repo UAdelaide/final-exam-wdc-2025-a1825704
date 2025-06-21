@@ -13,7 +13,7 @@ const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 app.use('/', walkRoutes);
-app.use('/api/user', userRoutes);
+app.use('/users', userRoutes);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

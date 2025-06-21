@@ -78,7 +78,7 @@ router.post('/login', (req, res) => {
             });
     } else {
         return res.status(400).send("Please provide login credentials");
-    };
+    }
   });
 
 router.get('/login', function (req, res) {

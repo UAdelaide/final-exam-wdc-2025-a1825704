@@ -15,7 +15,7 @@ const login = require('./routes/loginRoutes');
 
 app.use('/', walkRoutes);
 app.use('/users', userRoutes);
-app.use('/login', loginRoutes);
+app.use('/login', login);
 
 // Export the app instead of listening here
 module.exports = app;

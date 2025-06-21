@@ -6,7 +6,7 @@ router.post('/login', (req, res) => {
     // Gets username and password from the inputs
     const { username, password } = req.body;
 
-    
+    // Checks that there is both a username and password
     if (username && password) {
         req.pool.getConnection((err, connection) => {
             if (err) {
@@ -14,6 +14,7 @@ router.post('/login', (req, res) => {
                 return res.sendStatus(500);
             }
 
+            // Searches db for
             const query = "SELECT * FROM Users WHERE username = ?";
             connection.query(query, [username], (error, results) => {
                 connection.release();

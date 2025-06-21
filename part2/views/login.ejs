@@ -116,5 +116,34 @@
       Don't have an account? <a href="/users/register" style="color: #007bff; text-decoration: none;">register here</a>
     </div>
   </div>
+
+  <h2 style="color: white;">Dog List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dog ID</th>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Owner ID</th>
+        <th>Photo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% dogs.forEach(function(dog) { %>
+        <tr>
+          <td><%= dog.id %></td>
+          <td><%= dog.name %></td>
+          <td><%= dog.size %></td>
+          <td><%= dog.owner_id %></td>
+          <td>
+            <img src="https://dog.ceo/api/breeds/image/random" alt="Dog Photo"
+                 onerror="this.src='https://via.placeholder.com/100x100?text=No+Image';" />
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>
 </body>
 </html>

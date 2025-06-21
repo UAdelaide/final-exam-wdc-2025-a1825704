@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
+const db = require('../models/db');
 
 router.get('/api/dogs', function(req, res, next) {
 const pool = req.pool;
 
 try {
-    pool.query('SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs INNER JOIN Users ON Users.user_id = Dogs.owner_id', (err, results) => {
+    db.query('SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs INNER JOIN Users ON Users.user_id = Dogs.owner_id', (err, results) => {
         if (err) {
             console.log('Error Fetching Dogs:', err);
             return res.status(500).send('Could not load dogs');

@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
+function requireRole(role) {
+  return function (req, res, next) {
+    if (!req.session.user || req.session.user.role !== role) {
+      return res.redirect('/users/login');
+    }
+    next();
+  };
+}
+
 // GET all users (for admin/testing)
 router.get('/', async (req, res) => {
   try {

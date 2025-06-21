@@ -76,8 +76,7 @@ router.get('/dogs', async (req, res) => {
   try {
     const ownerId = req.user.id; // assuming Passport or similar populates req.user
 
-    const [dogs] = await db.query(`
-      SELECT * FROM Dogs WHERE owner_id = ?`, [ownerId]);
+    const [dogs] = await db.query(`SELECT * FROM Dogs WHERE owner_id = ?`, [ownerId]);
 
     res.json(dogs);
   } catch (err) {

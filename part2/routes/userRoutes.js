@@ -79,7 +79,7 @@ router.get('/login', async (req, res) => {
   try {
     const [dogs] = await db.query(`SELECT * FROM Dogs`);
     const [image] = "https://dog.ceo/api/breeds/image/random";
-    res.render('login', { dogs });
+    res.render('login', { dogs, image });
 } catch(err) {
     res.status(500).send('Error retrieving data: ' + err);
 }

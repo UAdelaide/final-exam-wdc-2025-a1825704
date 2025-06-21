@@ -80,7 +80,7 @@
     </form>
   </div>
 
-  <div>
+  <div id="app">
   <h1>All Registered Dogs</h1>
   <table class="centerTable">
     <thead>
@@ -99,7 +99,7 @@
           <td><%= dog.name %></td>
           <td><%= dog.size %></td>
           <td><%= dog.owner_id %></td>
-          <td onload="fetchRandomDog()">
+          <td>
             <img :src="imageUrl" alt="Dog Photo" style="max-width:100px;"/>
           </td>
         </tr>

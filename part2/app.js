@@ -31,6 +31,9 @@ app.use('/', walkRoutes);
 app.use('/users', userRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
+var engines = require('consolidate');
+app.engine('html', engines.mustache);
+app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
